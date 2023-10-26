@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
@@ -8,7 +9,7 @@ import { DISHES } from '../shared/dishes';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import Contact from './ContactComponent';
+import Contact from './ContactComponentV2';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
@@ -50,7 +51,15 @@ class Main extends Component {
       );
     };
     
-
+    const mapStateToProps = state => {
+      return {
+        dishes: state.dishes,
+        comments: state.comments,
+        promotions: state.promotions,
+        leaders: state.leaders
+      }
+    }
+    
     return (
       <div>
         <Header />
@@ -68,5 +77,12 @@ class Main extends Component {
     );
   }
 }
-
-export default Main;
+function mapStateToProps(state) {
+  return{
+    dishes: state.dishes,
+    comments: state.comments,
+    promotion: state.promotion,
+    leaders: state.leaders
+  }
+}
+export default (connect(mapStateToProps)(Main));
