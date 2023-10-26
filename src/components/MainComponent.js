@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
@@ -40,7 +40,15 @@ class Main extends Component {
           />
       );
     }
-
+    
+    const DishWithId = ({match}) => {
+      const {dishId} = useParams();
+      return(
+          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+      );
+    };
+    
 
     return (
       <div>
@@ -50,6 +58,7 @@ class Main extends Component {
             <Route exact path='/menu' element={<Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />} />
             <Route to="/home" element={<Navigate to="/menu" />}/>
             <Route exact path='/contactus' Component={Contact} />
+            <Route path='/menu/:dishId' component={DishWithId} />
         </Routes>
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
         <Footer />
