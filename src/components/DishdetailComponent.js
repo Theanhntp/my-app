@@ -49,20 +49,14 @@ function RenderDish({dish}) {
   }
 
   const  DishDetail = (props) => {
-    const dish = this.props.dish;
-    if (dish == null) {
-        return(<div></div>);
-    }
-    const dishItem = this.RenderDish(dish);
-    const dishComments = this.RenderComments(dish.comments);
+    if (props.dish != null)
     return(
-        <div className='container'>
+        <div className='container' key={props.dish}>
             <div className='row'>
-                {dishItem}
-                {dishComments}
+                <RenderDish dish={props.dish} />
+                <RenderComments comments={props.dish.comments} />
             </div>
-        </div>
-        
+        </div>        
     );
     
   }
