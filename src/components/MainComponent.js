@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
@@ -30,15 +30,15 @@ class Main extends Component {
             />
         );
     }
+
     return (
       <div>
         <Header />
-        <Switch>
+        <Routes>
             <Route path='/home' component={HomePage} />
-            <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
-            <Redirect to="/home" />
-        </Switch>
-        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+            <Route exact path='/menu' element={<Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />} />
+            <Route to="/home" element={<Navigate to="/menu" />}/>
+        </Routes>
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
         <Footer />
       </div>
