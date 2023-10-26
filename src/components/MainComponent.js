@@ -12,6 +12,7 @@ import Contact from './ContactComponent';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
+import About from './AboutComponent';
 
 class Main extends Component {
 
@@ -59,6 +60,7 @@ class Main extends Component {
             <Route to="/home" element={<Navigate to="/menu" />}/>
             <Route exact path='/contactus' Component={Contact} />
             <Route path='/menu/:dishId' component={DishWithId} />
+            <Route exact path='/aboutus' Component={About}/>
         </Routes>
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
         <Footer />
