@@ -31,12 +31,7 @@ class Contact extends Component {
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        const required = (val) => val && val.length;
-        const maxLength = (len) => (val) => !(val) || (val.length <= len);
-        const minLength = (len) => (val) => val && (val.length >= len);
-        const isNumber = (val) => !isNaN(Number(val));
-        const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+        const name = target.name;        
 
         this.setState({
           [name]: value
@@ -86,6 +81,12 @@ class Contact extends Component {
 
     render() {    
         const errors = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);                
+        
+        const required = (val) => val && val.length;
+        const maxLength = (len) => (val) => !(val) || (val.length <= len);
+        const minLength = (len) => (val) => val && (val.length >= len);
+        const isNumber = (val) => !isNaN(Number(val));
+        const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
         return (
             <div className="container">
                 <div className="row">
