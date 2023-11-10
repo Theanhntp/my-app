@@ -14,7 +14,7 @@ export const LEADERS = [
       image: '/assets/images/alberto.png',
       designation: 'Chief Food Officer',
       abbr: 'CFO',
-        featured: true,
+        featured: false,
       description: 'Our CFO, Danny, as he is affectionately referred to by his colleagues, comes from a long established family tradition in farming and produce. His experiences growing up on a farm in the Australian outback gave him great appreciation for varieties of food sources. As he puts it in his own words, Everything that runs, wins, and everything that stays, pays!'
     },
     {
@@ -35,4 +35,4 @@ export const LEADERS = [
       featured: true,
       description: 'Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!'
     }
-  ];
+];
